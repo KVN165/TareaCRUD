@@ -14,13 +14,13 @@ import com.pmp.dao.ContactosModel;
  * @author KVN
  */
 public class Main {
-    private static Scanner entradaTeclado = new Scanner(System.in);;
+    private static Scanner entradaTeclado = new Scanner(System.in);
     private static ContactosModel model = new ContactosModel();
+    
     public static void main(String[] args){
-        System.out.println("*********************************");
-        Funciones.menu();
-        int opcion_menu=0;
-        opcion_menu = entradaTeclado.nextInt();
+        Funciones.print("*********************************");
+        Funciones.menu(); 
+        int opcion_menu = entradaTeclado.nextInt();
         while (opcion_menu != 5){
             switch (opcion_menu){
                 case 1:
@@ -63,12 +63,12 @@ public class Main {
     private static void actualizarContacto(){
         Contacto updateContactos = new Contacto();
         int id;
-        updateContactos.setId(Integer.parseInt(Funciones.capturarCampo(entradaTeclado, "Id", "1")));
+        updateContactos.setId(Integer.parseInt(Funciones.capturarCampo2(entradaTeclado, "Id", "0")));
         updateContactos = model.obtenerContacto(updateContactos.getId());
         updateContactos.setNombre(Funciones.capturarCampo(entradaTeclado, "nombre", ""));
-        updateContactos.setDescripcion(Funciones.capturarCampo(entradaTeclado, "Descripcion", ""));
-        updateContactos.setNumero(Integer.parseInt(Funciones.capturarCampo(entradaTeclado, "Numero", "")));
-        updateContactos.setEdad(Integer.parseInt(Funciones.capturarCampo(entradaTeclado, "Edad", "")));
+        updateContactos.setDescripcion(Funciones.capturarCampo(entradaTeclado, "descripcion", ""));
+        updateContactos.setNumero(Integer.parseInt(Funciones.capturarCampo(entradaTeclado, "numero", "")));
+        updateContactos.setEdad(Integer.parseInt(Funciones.capturarCampo(entradaTeclado, "edad", "")));
         int actualizar = model.actualizarContacto(updateContactos);
         if (actualizar > 0){
             Funciones.print("CONTACTO ACTUALIZADO!!!");
@@ -79,14 +79,14 @@ public class Main {
     private static void eliminarContacto(){
         
         Contacto deletContacto = new Contacto();
-        deletContacto.setId(Integer.parseInt(Funciones.capturarCampo(entradaTeclado, "id", "0")));
+        deletContacto.setId(Integer.parseInt(Funciones.capturarCampo2(entradaTeclado, "Id", "0")));
         int eliminar = model.deleteContacto(deletContacto.getId());     
     }
     
     private static void insertarContacto(){
         Contacto nuevoContacto = new Contacto();
         Funciones.encabezado("Nuevo Contacto");
-        nuevoContacto.setNombre(Funciones.capturarCampo(entradaTeclado, "Nombre", "Juan"));
+        nuevoContacto.setNombre(Funciones.capturarCampo2(entradaTeclado, "Nombre", "Julio"));
         nuevoContacto.setDescripcion(Funciones.capturarCampo(entradaTeclado, "Decripcion", "Familiar"));
         nuevoContacto.setNumero(Integer.parseInt(Funciones.capturarCampo(entradaTeclado, "Numero", "123")));
         nuevoContacto.setEdad(Integer.parseInt(Funciones.capturarCampo(entradaTeclado, "Edad", "20")));
